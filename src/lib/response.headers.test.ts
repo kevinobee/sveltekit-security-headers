@@ -2,40 +2,33 @@ import { describe, it, expect } from 'vitest';
 import { HttpResponseHeaders } from './response.headers.js';
 import type { SecurityHeader } from './types.js';
 
-describe( 'applySecurityHeaders', () => {
+describe('applySecurityHeaders', () => {
+	it('removes header when value is undefined', () => {
+		const headers: Headers = new Headers();
+		headers.append('X-Foo', 'value');
 
-  it( 'removes header when value is undefined', () => {
-    const headers: Headers = new Headers();
-    headers.append( 'X-Foo', 'value' )
+		const securityHeaders: SecurityHeader[] = [{ name: 'X-Foo', value: undefined }];
 
-    const securityHeaders: SecurityHeader[] = [
-      { name: 'X-Foo', value: undefined }
-    ];
+		HttpResponseHeaders.applySecurityHeaders(headers, securityHeaders);
 
-    HttpResponseHeaders.applySecurityHeaders( headers, securityHeaders );
+		expect(headers.has('X-Foo')).toBe(false);
+	});
 
-    expect( headers.has( 'X-Foo' ) ).toBe( false );
-  } );
+	it('adds new header', () => {
+		const headers = new Headers();
+		const securityHeaders: SecurityHeader[] = [{ name: 'X-New', value: 'foo' }];
 
-  it( 'adds new header', () => {
-    const headers = new Headers();
-    const securityHeaders: SecurityHeader[] = [
-      { name: 'X-New', value: 'foo' }
-    ];
+		HttpResponseHeaders.applySecurityHeaders(headers, securityHeaders);
 
-    HttpResponseHeaders.applySecurityHeaders( headers, securityHeaders );
+		expect(headers.get('X-New')).toBe('foo');
+	});
 
-    expect( headers.get( 'X-New' ) ).toBe( 'foo' );
-  } );
+	it('updates existing header value', () => {
+		const headers = new Headers([['X-Test', 'old']]);
+		const securityHeaders = [{ name: 'X-Test', value: 'new' }];
 
-  it( 'updates existing header value', () => {
-    const headers = new Headers( [ [ 'X-Test', 'old' ] ] );
-    const securityHeaders = [ { name: 'X-Test', value: 'new' } ];
+		HttpResponseHeaders.applySecurityHeaders(headers, securityHeaders);
 
-    HttpResponseHeaders.applySecurityHeaders( headers, securityHeaders );
-
-    expect( headers.get( 'X-Test' ) ).toBe( 'new' );
-  } );
-} );
-
-
+		expect(headers.get('X-Test')).toBe('new');
+	});
+});

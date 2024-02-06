@@ -19,7 +19,7 @@ export type HttpSecurityResponseHeader =
 	| 'X-AspNet-Version'
 	| 'X-AspNetMvc-Version'
 	| 'Public-Key-Pins'
-  | string;
+	| string;
 
 export type SecurityHeader = {
 	name: HttpSecurityResponseHeader;

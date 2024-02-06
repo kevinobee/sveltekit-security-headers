@@ -23,20 +23,20 @@ npm run dev
 
 To add HTTP Security Response Headers to a SvelteKit application follow these steps:
 
-1. Install the ```@faranglao/svelte-http-security-headers``` package using ```npm install @faranglao/svelte-http-security-headers```.
-2. Create a new file called ```hooks.server.ts``` in the `src` directory of the project and add the following code:
+1. Install the `@faranglao/svelte-http-security-headers` package using `npm install @faranglao/svelte-http-security-headers`.
+2. Create a new file called `hooks.server.ts` in the `src` directory of the project and add the following code:
 
-    ```typescript
-    import { HttpResponseHeaders } from '$lib/response.headers.js';
-    import type { SecurityHeader } from '$lib/types.js';
-    import type { Handle } from '@sveltejs/kit';
+   ```typescript
+   import { HttpResponseHeaders } from '$lib/response.headers.js';
+   import type { SecurityHeader } from '$lib/types.js';
+   import type { Handle } from '@sveltejs/kit';
 
-    HttpResponseHeaders.useOwaspRecommended();
+   HttpResponseHeaders.useOwaspRecommended();
 
-    export const handle: Handle = HttpResponseHeaders.applySecurityHeaderHook;
-    ```
+   export const handle: Handle = HttpResponseHeaders.applySecurityHeaderHook;
+   ```
 
-Then run the web application using ```npm run dev``` or ```npm run build && npm run preview```.
+Then run the web application using `npm run dev` or `npm run build && npm run preview`.
 
 ## HTTP Security Headers Scanning
 
