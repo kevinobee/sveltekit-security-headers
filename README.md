@@ -1,58 +1,47 @@
-# create-svelte
+# Svelte HTTP Security Headers
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+> A simple way to add HTTP Security Response Headers to a SvelteKit application.
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+Take a look at the OWASP [HTTP Security Response Headers Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html) to find out why you should be doing this.
 
-## Creating a project
+## Sveltekit Example
 
-If you're seeing this, you've probably already done this step. Congrats!
+The repository contains a simple app built using [SvelteKit](https://kit.svelte.dev/).
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+The HTTP Response Headers for the site can be set can be set using Environment variables
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+The application uses a SvelteKit [server hook](https://kit.svelte.dev/docs/hooks) to improve the security posture of the web application. Appropriate HTTP response headers can be returned from the server when handling requests.
 
-## Developing
+To run the app use the following commands:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
+```shell
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+## Adding HTTP Security Response Headers
 
-## Building
+To add HTTP Security Response Headers to a SvelteKit application follow these steps:
 
-To build your library:
+1. Install the ```@faranglao/svelte-http-security-headers``` package using ```npm install @faranglao/svelte-http-security-headers```.
+2. Create a new file called ```hooks.server.ts``` in the `src` directory of the project and add the following code:
 
-```bash
-npm run package
-```
+    ```typescript
+    import { HttpResponseHeaders } from '$lib/response.headers.js';
+    import type { SecurityHeader } from '$lib/types.js';
+    import type { Handle } from '@sveltejs/kit';
 
-To create a production version of your showcase app:
+    HttpResponseHeaders.useOwaspRecommended();
 
-```bash
-npm run build
-```
+    export const handle: Handle = HttpResponseHeaders.applySecurityHeaderHook;
+    ```
 
-You can preview the production build with `npm run preview`.
+Then run the web application using ```npm run dev``` or ```npm run build && npm run preview```.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## HTTP Security Headers Scanning
 
-## Publishing
+To test the production website running on [Vercel](https://vercel.com/) using [OWASP Zed Attack Proxy (ZAP)](https://www.zaproxy.org/) run:
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
+```shell
+docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://svelte-http-security-headers-tawny.vercel.app/
 ```
