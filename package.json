@@ -1,6 +1,23 @@
 {
-	"name": "svelte-http-security-headers",
+	"name": "@faranglao/svelte-http-security-headers",
 	"version": "0.0.1",
+	"description": "A security library for SvelteKit, improving safety using HTTP Response Headers",
+	"private": false,
+	"type": "module",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/faranglao/svelte-http-security-headers.git"
+	},
+	"author": "Kevin Obee",
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"security",
+		"http",
+		"headers",
+		"library"
+	],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -52,6 +69,5 @@
 		"vitest": "^1.2.0"
 	},
 	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"type": "module"
+	"types": "./dist/index.d.ts"
 }
