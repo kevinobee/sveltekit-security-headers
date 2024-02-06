@@ -1,3 +1,11 @@
 {
-	"cSpell.words": ["esbuild", "faranglao", "HPKP", "nosniff", "publint", "vite"]
+	"cSpell.words": [
+    "esbuild",
+    "faranglao",
+    "HPKP",
+    "nosniff",
+    "publint",
+    "vite",
+    "zaproxy"
+  ]
 }
