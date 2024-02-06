@@ -25,6 +25,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm playwright install chromium
+      - run: pnpm exec playwright install-deps
       - run: pnpm test
         env:
           CI: true
