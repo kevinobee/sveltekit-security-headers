@@ -1,10 +1,13 @@
 {
 	"cSpell.words": [
+    "autoimport",
+    "dhoeric",
     "esbuild",
     "faranglao",
     "HPKP",
     "nosniff",
     "publint",
+    "tailwindcss",
     "vite",
     "zaproxy"
   ]
