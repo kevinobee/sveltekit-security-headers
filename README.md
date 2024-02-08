@@ -30,7 +30,7 @@ Running a scan on the official [SvelteKit](https://kit.svelte.dev/) website give
 
 The good news is that SvelteKit provides the [Hooks](https://kit.svelte.dev/docs/hooks) mechanism to update HTTP headers on the server before sending responses back to the browser.
 
-By adding the `@faranglao/svelte-http-security-headers` package to a vanilla SvelteKit website you can achieve a far more respectable [**A&nbsp;Grade**](https://securityheaders.com/?q=https%3A%2F%2Fsvelte-http-security-headers-tawny.vercel.app&hide=on&followRedirects=on) for those HTTP Security Headers.
+By adding the `@faranglao/svelte-http-security-headers` package to a vanilla SvelteKit website you can achieve a far more respectable [**A&nbsp;Grade**](https://securityheaders.com/?q=https%3A%2F%2Fsvelte-http-security-headers.vercel.app&hide=on&followRedirects=on) for those HTTP Security Headers.
 
 ![Grade A Security Report Summary!](./static/a-grade-report.jpg 'Grade A Security Report Summary')
 
@@ -64,7 +64,7 @@ Then run the web application using `npm run dev` or `npm run build && npm run pr
 Run an OWASP ZAP [baseline scan](https://www.zaproxy.org/docs/docker/baseline-scan/) of our website on [Vercel](https://vercel.com/) using the [OWASP Zed Attack Proxy (ZAP)](https://www.zaproxy.org/) with the following command:
 
 ```shell
-docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://svelte-http-security-headers-tawny.vercel.app/
+docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://svelte-http-security-headers.vercel.app/
 ```
 
 ## Source Code
