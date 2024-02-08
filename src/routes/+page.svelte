@@ -78,7 +78,7 @@
 	By adding the <code>@faranglao/svelte-http-security-headers</code> package to a vanilla SvelteKit
 	website you can achieve a far more respectable
 	<a
-		href="https://securityheaders.com/?q=https%3A%2F%2Fsvelte-http-security-headers-tawny.vercel.app&hide=on&followRedirects=on"
+		href="https://securityheaders.com/?q=https%3A%2F%2Fsvelte-http-security-headers.vercel.app&hide=on&followRedirects=on"
 		><strong>A</strong>&nbsp;Grade</a
 	> status for those HTTP Security Headers.
 </p>
@@ -129,7 +129,7 @@ export const handle: Handle = HttpResponseHeaders.applySecurityHeaderHook;</code
 </p>
 
 <pre class="command-line">
-docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://svelte-http-security-headers-tawny.vercel.app/
+docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://svelte-http-security-headers.vercel.app/
 </pre>
 
 <h2>Source Code</h2>
