@@ -1,0 +1,15 @@
+name: Zap Baseline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  zap-baseline-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.11.0
+        with:
+          target: 'https://svete-http-security-headers.vercel.app/'
