@@ -11,7 +11,38 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
-	"postCreateCommand": "npm install"
+	"postCreateCommand": "npm install",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"streetsidesoftware.code-spell-checker",
+				"nicoespeon.abracadabra",
+				"formulahendry.auto-rename-tag",
+				"aaron-bond.better-comments",
+				"alexkev.clg",
+				"EditorConfig.EditorConfig",
+				"dbaeumer.vscode-eslint",
+				"mhutchie.git-graph",
+				"bierner.github-markdown-preview",
+				"wix.vscode-import-cost",
+				"Zignd.html-css-class-completion",
+				"ZainChen.json",
+				"Tyriar.lorem-ipsum",
+				"yzhang.markdown-all-in-one",
+				"fivepointseven.node-version",
+				"christian-kohler.npm-intellisense",
+				"esbenp.prettier-vscode",
+				"YoavBls.pretty-ts-errors",
+				"svelte.svelte-vscode",
+				"pivaszbs.svelte-autoimport",
+				"fivethree.vscode-svelte-snippets",
+				"ardenivanov.svelte-intellisense",
+				"bradlc.vscode-tailwindcss",
+				"redhat.vscode-yaml",
+				"arahata.linter-actionlint"
+			]
+		}
+	}
 
 	// Configure tool-specific properties.
 	// "customizations": {},
