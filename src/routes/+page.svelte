@@ -1,6 +1,32 @@
+<script lang="ts">
+	import '../app.css';
+
+	const title = 'Svelte HTTP Security Headers';
+</script>
+
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
+
 <h1>Svelte HTTP Security Headers</h1>
 
-<p>A simple way to add HTTP Security Response Headers to a SvelteKit application.</p>
+<p>
+	Add HTTP Security Response Headers to any SvelteKit application by adding the <code
+		>@faranglao/svelte-http-security-headers</code
+	> package using NPM.
+</p>
+
+<h2>Why</h2>
+
+<p>Lets start with the why.</p>
+
+<p>
+	<a href="https://developer.mozilla.org/en-US/docs/Glossary/Response_header"
+		>HTTP Response Headers</a
+	>
+	count for something in terms of delivering web content securely and ensuring your application gets
+	served in the way that you intended.
+</p>
 
 <p>
 	Take a look at the OWASP <a
@@ -9,29 +35,52 @@
 	> to find out why you should be doing this.
 </p>
 
-<h2>HTTP Security Headers in SvelteKit</h2>
+<h3>SvelteKit HTTP Headers</h3>
 
 <p>
-	Running the <a href="https://securityheaders.com/">Security Headers</a> online scan against the
-	official
+	<a href="https://kit.svelte.dev/">SvelteKit</a> is a framework for rapidly developing robust,
+	performant web applications using <a href="https://svelte.dev/">Svelte</a>.
+</p>
+
+<p>
+	As a framework SvelteKit does not set HTTP response headers to meet specific OWASP recommendations
+	out of the box. That is only a bad thing if you ignore it.
+</p>
+
+<h3>Security Headers Scans</h3>
+
+<p>
+	To demonstrate the bring your own security hardening approach present in the SvelteKit framework
+	we can use <a href="https://securityheaders.com/">Security Headers</a> online scanner to run some tests.
+</p>
+
+<p>
+	Running a scan on the official
 	<a href="https://kit.svelte.dev/">SvelteKit</a>
-	website returns a surprising
+	website gives us a
 	<a
 		href="https://securityheaders.com/?q=https%3A%2F%2Fkit.svelte.dev%2F&hide=on&followRedirects=on"
 		><strong>D</strong>&nbsp;Grade</a
-	> summary.
+	> for missing HTTP headers.
 </p>
 
 <img src="kit-svelte-dev.jpg" alt="Security Headers summary for kit.svelte.dev" />
 <img src="kit-svelte-dev-missing-headers.jpg" alt="Missing Headers for kit.svelte.dev" />
 
+<h2>A Simple Solution</h2>
+
 <p>
-	Adding the <code>@faranglao/svelte-http-security-headers</code> package to a vanilla SvelteKit
-	website achieves a much more respectable
+	The good news is that SvelteKit provides the <a href="https://kit.svelte.dev/docs/hooks">Hooks</a>
+	mechanism to update HTTP headers on the server before sending responses back to the browser.
+</p>
+
+<p>
+	By adding the <code>@faranglao/svelte-http-security-headers</code> package to a vanilla SvelteKit
+	website you can achieve a far more respectable
 	<a
 		href="https://securityheaders.com/?q=https%3A%2F%2Fsvelte-http-security-headers-tawny.vercel.app&hide=on&followRedirects=on"
 		><strong>A</strong>&nbsp;Grade</a
-	> summary from the Security Headers scan.
+	> status for those HTTP Security Headers.
 </p>
 
 <img src="a-grade-report.jpg" alt="Grade A Security Report Summary" />
@@ -42,7 +91,7 @@
 npm install @faranglao/svelte-http-security-headers
 </pre>
 
-<h2>Adding HTTP Security Response Headers</h2>
+<h2>Getting Started</h2>
 
 <p>To add HTTP Security Response Headers to a SvelteKit application follow these steps:</p>
 
@@ -53,19 +102,19 @@ npm install @faranglao/svelte-http-security-headers
 	</li>
 	<li>
 		Create a new file called <code>hooks.server.ts</code> in the <code>src</code> directory of the project
-		and add the following code:
+		and add the following code.
 	</li>
 </ol>
 
-<pre class="code">
-import &#123;HttpResponseHeaders&#125; from '$lib/response.headers.js';
+<pre><code
+		>import &#123;HttpResponseHeaders&#125; from '$lib/response.headers.js';
 import type &#123;SecurityHeader&#125; from '$lib/types.js';
 import type &#123;Handle&#125; from '@sveltejs/kit';
 
 HttpResponseHeaders.useOwaspRecommended();
 
-export const handle: Handle = HttpResponseHeaders.applySecurityHeaderHook;
-</pre>
+export const handle: Handle = HttpResponseHeaders.applySecurityHeaderHook;</code
+	></pre>
 
 <p>
 	Then run the web application using <code>npm run dev</code> or
@@ -86,123 +135,9 @@ docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://svelte-h
 <h2>Source Code</h2>
 
 <p>
-	The source code for the <code>@faranglao/svelte-http-security-headers</code> page is maintained in
-	the
+	The source code for <code>@faranglao/svelte-http-security-headers</code> package is maintained
+	here in the
 	<a href="https://github.com/faranglao/svelte-http-security-headers"
 		>svelte-http-security-headers</a
 	> repository on GitHub.
 </p>
-
-<style>
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-	}
-
-	* {
-		margin: 0;
-	}
-
-	p,
-	h1,
-	h2 {
-		overflow-wrap: break-word;
-	}
-
-	img {
-		display: block;
-		max-width: 100%;
-	}
-
-	/* Page CSS */
-
-	:global(body) {
-		background-color: hsla(330, 11%, 35%, 0.247);
-		font-family:
-			system-ui,
-			-apple-system,
-			BlinkMacSystemFont,
-			'Segoe UI',
-			Roboto,
-			Oxygen,
-			Ubuntu,
-			Cantarell,
-			'Open Sans',
-			'Helvetica Neue',
-			sans-serif,
-			Helvetica,
-			sans-serif;
-		font-size: 1rem;
-		line-height: 1.5;
-		-webkit-font-smoothing: antialiased;
-		max-width: 76ch;
-		margin-inline: auto;
-	}
-
-	h1 {
-		font-size: 2rem;
-	}
-
-	h2 {
-		font-size: 1.4rem;
-	}
-
-	h1,
-	h2 {
-		text-wrap: balance;
-		padding-block: 1rem;
-	}
-
-	p {
-		text-wrap: pretty;
-		padding-block-end: 0.5rem;
-	}
-
-	ol {
-		padding-block: 1rem;
-		padding-inline: 1rem;
-	}
-
-	ol li {
-		padding-block-end: 1rem;
-	}
-
-	ol li:last-child {
-		padding-block-end: 0;
-	}
-
-	pre.code,
-	pre.command-line {
-		display: block;
-		background-color: rgba(119, 136, 153, 0.096);
-
-		margin-inline: 0.5rem;
-		margin-block-start: 0.5em;
-		margin-block-end: 2em;
-		padding: 0.5rem;
-		border: solid 3px hsla(0, 0%, 0%, 0.082);
-		box-shadow: 5px 5px 10px rgba(1, 22, 39, 0.7);
-		text-wrap: pretty;
-	}
-
-	pre.command-line {
-		background-color: rgba(61, 103, 145, 0.137);
-	}
-
-	pre.code {
-		text-wrap: pretty;
-		overflow: auto;
-		margin-block-end: 2em;
-		line-height: 1.4rem;
-	}
-
-	code {
-		font-weight: 600;
-	}
-
-	img {
-		padding: 1rem;
-		min-width: 100px;
-	}
-</style>
