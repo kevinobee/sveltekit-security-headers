@@ -1,6 +1,8 @@
 # Svelte HTTP Security Headers
 
 [![Node.js CI](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/node.js.yml/badge.svg)](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/node.js.yml)
+[![Lint](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/lint.yml/badge.svg)](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/lint.yml)
+[![Playwright Tests](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/playwright.yml/badge.svg)](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/playwright.yml)
 
 Add HTTP Security Response Headers to any SvelteKit application by adding the `@faranglao/svelte-http-security-headers` package using NPM.
 
