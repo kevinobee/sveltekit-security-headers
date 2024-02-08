@@ -8,13 +8,13 @@ Take a look at the OWASP [HTTP Security Response Headers Cheat Sheet](https://ch
 
 Running a [Security Headers](https://securityheaders.com/) scan on the official [SvelteKit](https://kit.svelte.dev/) website returns a surprising [**D&nbsp;Grade**](https://securityheaders.com/?q=https%3A%2F%2Fkit.svelte.dev%2F&hide=on&followRedirects=on) for missing HTTP headers.
 
-![The Security Headers summary for kit.svelte.dev](./static/kit-svelte-dev.jpg "Security Headers summary for kit.svelte.dev")
+![The Security Headers summary for kit.svelte.dev](./static/kit-svelte-dev.jpg 'Security Headers summary for kit.svelte.dev')
 
-![The Missing Headers for kit.svelte.dev](./static/kit-svelte-dev-missing-headers.jpg "Missing Headers for kit.svelte.dev")
+![The Missing Headers for kit.svelte.dev](./static/kit-svelte-dev-missing-headers.jpg 'Missing Headers for kit.svelte.dev')
 
 Adding the `@faranglao/svelte-http-security-headers` package to a vanilla SvelteKit website achieves a more respectable [**A&nbsp;Grade**](https://securityheaders.com/?q=https%3A%2F%2Fsvelte-http-security-headers-tawny.vercel.app&hide=on&followRedirects=on) summary from the Security Headers scanner.
 
-![Grade A Security Report Summary!](./static/a-grade-report.jpg "Grade A Security Report Summary")
+![Grade A Security Report Summary!](./static/a-grade-report.jpg 'Grade A Security Report Summary')
 
 ## Installation
 
