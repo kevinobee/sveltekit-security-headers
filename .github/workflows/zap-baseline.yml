@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  zap-baseline-scan:
+  baseline-scan:
     runs-on: ubuntu-latest
     steps:
       - name: ZAP Scan
