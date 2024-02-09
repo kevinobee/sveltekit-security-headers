@@ -6,3 +6,6 @@ yarn.lock
 
 # VS Code settings
 .vscode
+
+# Changesets
+.changeset
