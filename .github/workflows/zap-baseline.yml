@@ -1,7 +1,6 @@
 name: Zap Baseline
 
 on:
-  deployment_status:
   workflow_dispatch:
 
 jobs:
@@ -10,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
-    if: (github.event.deployment_status.state == 'success')
     steps:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.11.0
