@@ -1,8 +1,8 @@
 # Svelte HTTP Security Headers
 
-[![Node.js CI](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/node.js.yml/badge.svg)](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/node.js.yml)
-[![Lint](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/lint.yml/badge.svg)](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/lint.yml)
-[![Playwright Tests](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/playwright.yml/badge.svg)](https://github.com/faranglao/svelte-http-security-headers/actions/workflows/playwright.yml)
+[![Node.js CI](https://github.com/kevinobee/svelte-http-security-headers/actions/workflows/node.js.yml/badge.svg)](https://github.com/kevinobee/svelte-http-security-headers/actions/workflows/node.js.yml)
+[![Lint](https://github.com/kevinobee/svelte-http-security-headers/actions/workflows/lint.yml/badge.svg)](https://github.com/kevinobee/svelte-http-security-headers/actions/workflows/lint.yml)
+[![Playwright Tests](https://github.com/kevinobee/svelte-http-security-headers/actions/workflows/playwright.yml/badge.svg)](https://github.com/kevinobee/svelte-http-security-headers/actions/workflows/playwright.yml)
 
 Add HTTP Security Response Headers to any SvelteKit application by adding the `@faranglao/svelte-http-security-headers` package using NPM.
 
@@ -73,4 +73,4 @@ docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://svelte-h
 
 ## Source Code
 
-The source code for `@faranglao/svelte-http-security-headers` package is maintained here in the [svelte-http-security-headers](https://github.com/faranglao/svelte-http-security-headers) repository on GitHub.
+The source code for `@faranglao/svelte-http-security-headers` package is maintained here in the [svelte-http-security-headers](https://github.com/kevinobee/svelte-http-security-headers) repository on GitHub.

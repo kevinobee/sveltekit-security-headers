@@ -137,7 +137,7 @@ docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://svelte-h
 <p>
 	The source code for <code>@faranglao/svelte-http-security-headers</code> package is maintained
 	here in the
-	<a href="https://github.com/faranglao/svelte-http-security-headers"
+	<a href="https://github.com/kevinobee/svelte-http-security-headers"
 		>svelte-http-security-headers</a
 	> repository on GitHub.
 </p>
