@@ -1,0 +1,19 @@
+name: Zap Baseline
+
+on:
+  deployment_status:
+  workflow_dispatch:
+
+jobs:
+  baseline-scan:
+    name: OWASP Zap Baseline Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    if: (github.event.deployment_status.state == 'success' && github.event.deployment_status.environment == 'production')
+    steps:
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.11.0
+        with:
+          target: 'https://svete-http-security-headers.vercel.app/'
+          cmd_options: '-a -I'
