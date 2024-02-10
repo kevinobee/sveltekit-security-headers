@@ -1,13 +1,37 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
-test('index page has expected h1', async ({ page }) => {
-	await page.goto('/');
-	await expect(page.getByRole('heading', { name: 'Svelte HTTP Security Headers' })).toBeVisible();
-});
+test.describe.configure( { mode: 'serial' } );
 
-test('index page has expected npm package instructions', async ({ page }) => {
-	await page.goto('/');
-	await expect(
-		page.locator('pre').filter({ hasText: 'npm install @faranglao/svelte' })
-	).toBeVisible();
-});
+test.describe( 'Home page', () => {
+
+	const homepage = '/';
+	const expectedOrg = 'faranglao';
+	const expectedName = 'sveltekit-security-headers';
+	const packageName = `@${expectedOrg}/${expectedName}`;
+
+
+	let page: Page;
+
+	test.beforeAll( async ( { browser } ) => {
+		page = await browser.newPage();
+	} );
+
+	test.afterAll( async () => {
+		await page.close();
+	} );
+
+	test( 'has h1 containing NPM package name', async () => {
+		await page.goto( homepage );
+		await expect( page.getByRole( 'heading', { name: expectedName } ) ).toBeVisible();
+	} );
+
+	test( 'body contains NPM package installation instructions', async ( { page } ) => {
+		const expectedInstallationCommand = `npm install ${ packageName }`;
+		await page.goto( homepage );
+		await expect(
+			page.locator( 'pre' ).filter( { hasText: expectedInstallationCommand } )
+		).toBeVisible();
+	} );
+} );
+
+

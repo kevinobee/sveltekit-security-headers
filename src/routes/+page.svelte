@@ -1,9 +1,7 @@
 <script lang="ts">
-	import '../app.css';
-
 	const title = 'sveltekit-security-headers';
 	const description = 'Add HTTP Security Response Headers to any SvelteKit application';
-	const npm = `@faranglao/${title}`;
+	const npmPackage = `@faranglao/${title}`;
 </script>
 
 <svelte:head>
@@ -14,12 +12,18 @@
 <h1>{title}</h1>
 
 <p>
-	Add HTTP Security Response Headers to any <a href="https://kit.svelte.dev/">SvelteKit</a> application by adding the <code>{npm}</code> package using NPM.
+	Add HTTP Security Response Headers to any <a href="https://kit.svelte.dev/">SvelteKit</a> application by adding the <code>{npmPackage}</code> package using NPM.
 </p>
+
+<h2>Installation</h2>
+
+<pre><code>
+	npm install {npmPackage}
+</code></pre>
 
 <h2>Source Code</h2>
 
 <p>
-	Source code for the <code>{npm}</code> package is maintained
-	on <a href="https://github.com/kevinobee/sveltekit-security-headers">GitHub</a>.
+	Source code for the <code>{npmPackage}</code> package is maintained
+	on <a href="https://github.com/kevinobee/{title}">GitHub</a>.
 </p>
