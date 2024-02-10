@@ -12,8 +12,7 @@
 <h1>{title}</h1>
 
 <p>
-	Add HTTP Security Response Headers to any <a href="https://kit.svelte.dev/">SvelteKit</a>
-	application by adding the <code>{npmPackage}</code> package using NPM.
+	Adds HTTP headers to page responses from any <a href="https://kit.svelte.dev/">SvelteKit</a> web application to provide industry expected security when visitors browse your site.
 </p>
 
 <h2>Installation</h2>
