@@ -13,5 +13,5 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.11.0
         with:
-          target: 'https://svete-http-security-headers.vercel.app/'
+          target: 'https://sveltekit-security-headers.vercel.app/'
           cmd_options: '-a -I'
