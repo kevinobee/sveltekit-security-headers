@@ -21,5 +21,5 @@
 
 <p>
 	Source code for the <code>{npm}</code> package is maintained
-	on <a href="https://github.com/kevinobee/svelte-http-security-headers">GitHub</a>.
+	on <a href="https://github.com/kevinobee/sveltekit-security-headers">GitHub</a>.
 </p>
