@@ -1,5 +1,5 @@
 ---
-"@faranglao/svelte-http-security-headers": patch
+"@faranglao/sveltekit-security-headers": patch
 ---
 
 Add workflow automation badges to README.md

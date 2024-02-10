@@ -1,5 +1,5 @@
 {
-	"name": "@faranglao/svelte-http-security-headers",
+	"name": "@faranglao/sveltekit-security-headers",
 	"version": "0.0.1",
 	"description": "A security library for SvelteKit, improving safety using HTTP Response Headers",
 	"private": false,
@@ -7,7 +7,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/kevinobee/svelte-http-security-headers.git"
+		"url": "https://github.com/kevinobee/sveltekit-security-headers.git"
 	},
 	"author": "Kevin Obee",
 	"keywords": [
