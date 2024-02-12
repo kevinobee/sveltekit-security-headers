@@ -1,5 +1,7 @@
 # sveltekit-security-headers
 
+Adds HTTP headers to page responses from any SvelteKit web application enhancing security for visitors browsing your site.
+
 [![Node.js CI](https://github.com/kevinobee/sveltekit-security-headers/actions/workflows/node.js.yml/badge.svg)](https://github.com/kevinobee/sveltekit-security-headers/actions/workflows/node.js.yml)
 [![Lint](https://github.com/kevinobee/sveltekit-security-headers/actions/workflows/lint.yml/badge.svg)](https://github.com/kevinobee/sveltekit-security-headers/actions/workflows/lint.yml)
 [![Playwright Tests](https://github.com/kevinobee/sveltekit-security-headers/actions/workflows/playwright.yml/badge.svg)](https://github.com/kevinobee/sveltekit-security-headers/actions/workflows/playwright.yml)
@@ -9,8 +11,6 @@
 ```shell
 npm install @faranglao/sveltekit-security-headers
 ```
-
-Adds HTTP headers to page responses from any SvelteKit web application to provide industry expected security when visitors browse your site.
 
 ### Getting Started
 
@@ -30,6 +30,8 @@ export const handle: Handle = HttpResponseHeaders.handle;
 ```
 
 - Scenario: existing Hooks defined in `src/hooks.server.ts`:
+
+Use [the sequence helper function](https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks) to wrap the existing hook and `HttpResponseHeaders.handle` hook as shown below.
 
 ```ts
 import type { Handle } from '@sveltejs/kit';
