@@ -7,7 +7,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/kevinobee/sveltekit-security-headers.git"
+		"url": "git+https://github.com/kevinobee/sveltekit-security-headers.git"
 	},
 	"author": "Kevin Obee",
 	"keywords": [
