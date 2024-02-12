@@ -13,18 +13,18 @@ const Rules = {
 const applySecurityHeaders = (headers: Headers, securityHeaders: SecurityHeader[]) => {
 	securityHeaders.forEach((header) => {
 		if (header.value !== undefined) {
-			const currentValue = headers.get( header.name );
-			if ( currentValue == null ) {
-				headers.set( header.name, header.value );
-			}
-			else {
+			const currentValue = headers.get(header.name);
+			if (currentValue == null) {
+				headers.set(header.name, header.value);
+			} else {
 				if (currentValue !== header.value) {
-					console.log( `WARN: setting ${ header.name } HTTP response header to '${ header.value}', replacing '${currentValue}' value` );
+					console.log(
+						`WARN: setting ${header.name} HTTP response header to '${header.value}', replacing '${currentValue}' value`
+					);
 					headers.set(header.name, header.value);
 				}
 			}
-		}
-		else {
+		} else {
 			if (headers.has(header.name)) {
 				headers.delete(header.name);
 			}

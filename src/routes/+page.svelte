@@ -23,12 +23,13 @@ npm install {npmPackage}
 </code></pre>
 
 <p>
-Then run the web application using <code>npm run dev</code> or <code>npm run build && npm run preview</code>.
+	Then run the web application using <code>npm run dev</code> or
+	<code>npm run build && npm run preview</code>.
 </p>
 
 <h2>Source Code</h2>
 
 <p>
-Source code for the <code>{npmPackage}</code> package is maintained on
+	Source code for the <code>{npmPackage}</code> package is maintained on
 	<a href="https://github.com/kevinobee/{title}">GitHub</a>.
 </p>
