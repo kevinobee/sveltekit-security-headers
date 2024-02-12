@@ -1,11 +1,17 @@
-import { HttpResponseHeaders } from '$lib/response.headers.js';
+// Scenario: no previous Hooks defined in src/hooks.server.ts
+import { HttpResponseHeaders } from './lib/headers.js';
 import type { Handle } from '@sveltejs/kit';
 
-HttpResponseHeaders.useOwaspRecommended();
+export const handle: Handle = HttpResponseHeaders.handle;
 
-HttpResponseHeaders.useHeaders([
-	{ name: 'X-Sveltekit-Page', value: undefined } // remove a SvelteKit header
-	// { name: 'X-Powered-By', value: 'internet' }  // overwrite a header
-]);
+// Scenario: existing Hooks defined in src/hooks.server.ts:
+// import { HttpResponseHeaders } from "$lib/headers.js";
+// import type { Handle } from "@sveltejs/kit";
+// import { sequence } from "@sveltejs/kit/hooks";
 
-export const handle: Handle = HttpResponseHeaders.applySecurityHeaderHook;
+// export const handle: Handle = sequence( async ( { event, resolve } ) => {
+// 	// Do something with the inbound request
+// 	const response = await resolve( event );
+// 	// Do something with the response before returning it
+// 	return response;
+// }, HttpResponseHeaders.handle);

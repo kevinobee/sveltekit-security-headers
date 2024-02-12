@@ -19,8 +19,13 @@
 <h2>Installation</h2>
 
 <pre><code>
-	npm install {npmPackage}
+npm install {npmPackage}
 </code></pre>
+
+<p>
+	Then run the web application using <code>npm run dev</code> or
+	<code>npm run build && npm run preview</code>.
+</p>
 
 <h2>Source Code</h2>
 
