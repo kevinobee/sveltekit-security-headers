@@ -19,6 +19,9 @@
 		"library"
 	],
 	"scripts": {
+		"changeset": "changeset",
+		"prerelease": "npm run build && npm run test",
+		"release": "changeset publish",
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
 		"preview": "vite preview",
@@ -47,6 +50,7 @@
 		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
+		"@changesets/changelog-github": "^0.5.0",
 		"@changesets/cli": "^2.27.1",
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^3.0.0",
