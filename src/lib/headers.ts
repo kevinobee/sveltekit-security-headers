@@ -13,13 +13,19 @@ const Rules = {
 const applySecurityHeaders = (headers: Headers, securityHeaders: SecurityHeader[]) => {
 	securityHeaders.forEach((header) => {
 		if (header.value !== undefined) {
-			if (headers.get(header.name) !== header.value) {
-				// console.log('Set response header', {header});
-				headers.set(header.name, header.value);
+			const currentValue = headers.get( header.name );
+			if ( currentValue == null ) {
+				headers.set( header.name, header.value );
 			}
-		} else {
+			else {
+				if (currentValue !== header.value) {
+					console.log( `WARN: setting ${ header.name } HTTP response header to '${ header.value}', replacing '${currentValue}' value` );
+					headers.set(header.name, header.value);
+				}
+			}
+		}
+		else {
 			if (headers.has(header.name)) {
-				// console.log('Remove response header', {name: header.name, value: headers.get(header.name)});
 				headers.delete(header.name);
 			}
 		}
