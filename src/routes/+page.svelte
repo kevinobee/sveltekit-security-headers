@@ -18,46 +18,8 @@
 
 <h2>Installation</h2>
 
-<p>
-To add HTTP Security Response Headers to a SvelteKit application follow these steps:
-</p>
-
-<p>1. Install the package.</p>
-
 <pre><code>
 npm install {npmPackage}
-</code></pre>
-
-<p>
-2. Add or update <code>src/hooks.server.ts</code>:  
-</p>
-
-<p>
-Scenario: no previous Hooks defined in <code>src/hooks.server.ts</code>:
-</p>
-
-<pre><code>
-import type { Handle } from '@sveltejs/kit';
-import { HttpResponseHeaders } from '@faranglao/sveltekit-security-headers';
-
-export const handle: Handle = HttpResponseHeaders.handle;
-</code></pre>
-
-<p>
-Scenario: existing Hooks defined in <code>src/hooks.server.ts</code>:
-</p>
-
-<pre><code>
-import type { Handle } from '@sveltejs/kit';
-import { sequence } from '@sveltejs/kit/hooks';
-import { HttpResponseHeaders } from '@faranglao/sveltekit-security-headers';
-
-export const handle: Handle = sequence(async ({ event, resolve }) => {
-	// Do something with the inbound request
-	const response = await resolve(event);
-	// Do something with the outbound response before returning it
-	return response;
-}, HttpResponseHeaders.handle);
 </code></pre>
 
 <p>
