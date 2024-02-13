@@ -13,7 +13,17 @@ main {
 	max-width: 40rem;
 }
 
+h1,
+h2 {
+	text-wrap: balance;
+}
+
+p {
+	text-wrap: pretty;
+}
+
 code {
+	tab-size: 2;
+	font-family: 'MonoLisa', monospace;
 	font-weight: 700;
-	background-color: hsla(0, 0%, 0%, 0.1);
 }

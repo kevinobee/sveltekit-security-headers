@@ -5,6 +5,7 @@
     "esbuild",
     "faranglao",
     "HPKP",
+    "mdsvex",
     "nosniff",
     "publint",
     "securityheaders",
