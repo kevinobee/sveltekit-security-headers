@@ -18,9 +18,7 @@
 
 <h2>Installation</h2>
 
-<pre><code>
-npm install {npmPackage}
-</code></pre>
+<pre><code>npm install {npmPackage}</code></pre>
 
 <p>
 	Then run the web application using <code>npm run dev</code> or
