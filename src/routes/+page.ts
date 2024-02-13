@@ -1,5 +1,6 @@
-export async function load(): Promise<{ content: unknown }> {
-	const md = await import('$lib/docs/README.md');
+/** @type {import('./$types').PageLoad} */
+export async function load() {
+	const md = await import('../lib/docs/README.md');
 
 	const content = md.default;
 
