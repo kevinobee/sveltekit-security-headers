@@ -45,7 +45,9 @@
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
+		"!dist/**/*.spec.*",
+		"!dist/docs/",
+		"!dist/styles/"
 	],
 	"peerDependencies": {
 		"svelte": "^4.0.0"
