@@ -1,6 +1,4 @@
-import { expect, test, type Response, type Page } from '@playwright/test';
-
-test.describe.configure({ mode: 'serial' });
+import { expect, test } from '@playwright/test';
 
 test.describe('HTTP Security Response Headers', () => {
 	const homepage = '/';
@@ -11,28 +9,12 @@ test.describe('HTTP Security Response Headers', () => {
 		{ name: 'Referrer-Policy', recommendedValue: 'strict-origin-when-cross-origin' },
 		{ name: 'Permissions-Policy', recommendedValue: 'geolocation=(), camera=(), microphone=()' }
 	];
-	let response: Response | null;
-
-	let page: Page;
-
-	test.beforeAll(async ({ browser }) => {
-		page = await browser.newPage();
-		response = await page.goto(homepage);
-	});
-
-	test.afterAll(async () => {
-		await page.close();
-	});
 
 	expectedSecurityHeaders.forEach(({ name, recommendedValue }) => {
-		test.describe(name, () => {
-			test('header is returned', async () => {
-				expect(await response?.headerValue(name)).not.toBeNull();
-			});
-
-			test('header is recommended value', async () => {
-				expect(await response?.headerValue(name)).toBe(recommendedValue);
-			});
+		test(`${name} header is set to '${recommendedValue}'`, async ({ page }) => {
+			const response = await page.goto(homepage);
+			expect(await response?.headerValue(name)).not.toBeNull();
+			expect(await response?.headerValue(name)).toBe(recommendedValue);
 		});
 	});
 });

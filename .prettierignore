@@ -9,3 +9,6 @@ yarn.lock
 
 # Changesets
 .changeset
+
+# Code coverage
+/coverage

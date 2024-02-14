@@ -22,6 +22,17 @@
 npm install {npmPackage}
 </code></pre>
 
+<h2>Getting Started</h2>
+
+<p>
+	Add the <code>handleHttpResponseHeaders</code> Hook in <code>src/hooks.server.ts</code> file.
+	Refer to the repo
+	<a
+		href="https://github.com/kevinobee/sveltekit-security-headers?tab=readme-ov-file#getting-started"
+		>README</a
+	> for code snippets.
+</p>
+
 <p>
 	Then run the web application using <code>npm run dev</code> or
 	<code>npm run build && npm run preview</code>.
