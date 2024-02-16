@@ -12,7 +12,8 @@
 <h1>{title}</h1>
 
 <p>
-	Adds HTTP headers to page responses from any <a href="https://kit.svelte.dev/">SvelteKit</a> web application enhancing security for visitors browsing your site.
+	Adds HTTP headers to page responses from any <a href="https://kit.svelte.dev/">SvelteKit</a> web application
+	enhancing security for visitors browsing your site.
 </p>
 
 <h2>Installation</h2>
