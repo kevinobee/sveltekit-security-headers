@@ -1,4 +1,3 @@
-import type { Handle } from '@sveltejs/kit';
 import type { SecurityHeader } from './types.js';
 
 const Rules = {
@@ -10,7 +9,10 @@ const Rules = {
 	]
 };
 
-const applySecurityHeaders = (headers: Headers, securityHeaders: SecurityHeader[]) => {
+const applySecurityHeaders = (
+	headers: Headers,
+	securityHeaders: SecurityHeader[] = Rules.SecurityHeaders
+) => {
 	securityHeaders.forEach((header) => {
 		if (header.value !== undefined) {
 			const currentValue = headers.get(header.name);
@@ -32,14 +34,7 @@ const applySecurityHeaders = (headers: Headers, securityHeaders: SecurityHeader[
 	});
 };
 
-const applySecurityHeadersHandler: Handle = async ({ event, resolve }) => {
-	const response = await resolve(event);
-	applySecurityHeaders(response.headers, Rules.SecurityHeaders);
-	return response;
-};
-
 export const HttpResponseHeaders = {
-	handle: applySecurityHeadersHandler,
 	applySecurityHeaders,
 	Rules
 };
