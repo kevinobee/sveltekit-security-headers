@@ -18,15 +18,13 @@
 
 <h2>Installation</h2>
 
-<pre><code>
-npm install {npmPackage}
-</code></pre>
+<pre><code>npm install {npmPackage}</code></pre>
 
 <h2>Getting Started</h2>
 
 <p>
 	Add the <code>handleHttpResponseHeaders</code> Hook in <code>src/hooks.server.ts</code> file.
-	Refer to the repo
+	Refer to the repository's
 	<a
 		href="https://github.com/kevinobee/sveltekit-security-headers?tab=readme-ov-file#getting-started"
 		>README</a
