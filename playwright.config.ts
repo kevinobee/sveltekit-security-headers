@@ -6,15 +6,10 @@ const config: PlaywrightTestConfig = {
 		port: 4173,
 		reuseExistingServer: !process.env.CI,
 		stdout: 'ignore',
-		stderr: 'pipe',
+		stderr: 'pipe'
 	},
 	testDir: 'tests',
-	reporter: process.env.CI
-		? [
-				[ 'github'],
-				[ 'html', { open: 'never' } ]
-			]
-		: 'list',
+	reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : 'list',
 	testMatch: /(.+\.)?(test|spec)\.[jt]s/
 };
 
