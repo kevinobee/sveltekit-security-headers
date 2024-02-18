@@ -54,6 +54,7 @@ async function SecurityHeaders(
 			event: RequestEvent<Partial<Record<string, string>>, string | null>,
 			opts?: ResolveOptions | undefined
 		): MaybePromise<Response>;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(arg0: any): any;
 	},
 	config: SvelteKitResponseHeadersConfig
