@@ -11,6 +11,8 @@
 		"strict": true,
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
-		"types": ["axe-playwright"]
+		"types": [
+			"axe-core"
+		]
 	}
 }
