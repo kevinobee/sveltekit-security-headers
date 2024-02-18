@@ -38,8 +38,8 @@ import { sequence } from '@sveltejs/kit/hooks';
 import { handleHttpResponseHeaders } from '@faranglao/sveltekit-security-headers';
 
 export const handle: Handle = sequence(
-	/* existing Hook code , */
-	handleHttpResponseHeaders
+  /* existing Hook code , */
+  handleHttpResponseHeaders
 );
 ```
 
@@ -53,19 +53,19 @@ Full customization of HTTP response headers returned from your application is sh
 import { SvelteKitSecurityHeaders } from '@faranglao/sveltekit-security-headers';
 
 export const handle = SvelteKitSecurityHeaders({
-	headers: [
-		...new Set([
-			// removes duplicates
-			...RuleSet.SecurityHeaders,
-			...RuleSet.SvelteKitSpecific,
-			...RuleSet.OwaspRecommended,
-			[
-				{ name: 'X-XYZ-HEADER', value: 'value to set' },
-				{ name: 'X-XYZ-HEADER-TO-REMOVE', value: null }
-			]
-		])
-	],
-	verbose: true
+  headers: [
+    ...new Set([
+      // removes duplicates
+      ...RuleSet.SecurityHeaders,
+      ...RuleSet.SvelteKitSpecific,
+      ...RuleSet.OwaspRecommended,
+      [
+        { name: 'X-XYZ-HEADER', value: 'value to set' },
+        { name: 'X-XYZ-HEADER-TO-REMOVE', value: null }
+      ]
+    ])
+  ],
+  verbose: true
 }).handle;
 ```
 
