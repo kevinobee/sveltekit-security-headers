@@ -14,7 +14,14 @@ const SvelteKitSpecific: SecurityHeader[] = [
 const OwaspRecommended: SecurityHeader[] = [
 	...new Set([
 		// removes duplicates
-		...SecurityHeaders
+		...SecurityHeaders,
+		{ name: 'Content-Type', value: 'text/html; charset=UTF-8' },
+		{ name: 'Expect-CT', value: null },
+		{ name: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+		{ name: 'Cross-Origin-Embedder-Policy', value: 'require-corp' },
+		{ name: 'Cross-Origin-Resource-Policy', value: 'same-site' },
+		{ name: 'Server', value: 'webserver' },
+		{ name: 'Public-Key-Pins', value: null }
 	])
 ];
 
