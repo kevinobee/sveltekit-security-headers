@@ -27,6 +27,6 @@ export type SecurityHeader = {
 };
 
 export interface SvelteKitResponseHeadersConfig {
-	headers: SecurityHeader[]
+	headers: SecurityHeader[];
 	verbose: boolean;
 }
