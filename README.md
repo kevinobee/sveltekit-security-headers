@@ -30,16 +30,16 @@ export const handle = SvelteKitSecurityHeaders().handle;
 
 Scenario - existing `handle` Hook defined in `src/hooks.server.ts`:
 
-Use [the sequence helper function](https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks) to wrap the existing hook and `handleHttpResponseHeaders` handler as shown below.
+Use [the sequence helper function](https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks) to wrap the existing hook and `SvelteKitSecurityHeaders` function as shown below.
 
 ```ts
 import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
-import { handleHttpResponseHeaders } from '@faranglao/sveltekit-security-headers';
+import { SvelteKitSecurityHeaders } from '@faranglao/sveltekit-security-headers';
 
 export const handle: Handle = sequence(
   /* existing Hook code , */
-  handleHttpResponseHeaders
+  SvelteKitSecurityHeaders().handle
 );
 ```
 
