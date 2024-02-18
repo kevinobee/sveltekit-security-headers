@@ -1,4 +1,4 @@
-export type HttpSecurityResponseHeader =
+export type HttpResponseHeader =
 	| 'X-Frame-Options'
 	| 'X-XSS-Protection'
 	| 'X-Content-Type-Options'
@@ -22,6 +22,11 @@ export type HttpSecurityResponseHeader =
 	| string;
 
 export type SecurityHeader = {
-	name: HttpSecurityResponseHeader;
-	value: string | undefined;
+	name: HttpResponseHeader;
+	value: string | null;
 };
+
+export interface SvelteKitResponseHeadersConfig {
+	headers: SecurityHeader[]
+	verbose: boolean;
+}
