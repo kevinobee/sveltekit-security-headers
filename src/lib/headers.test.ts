@@ -1,15 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import { HttpResponseHeaders } from './headers.js';
-import type { SecurityHeader } from './types.js';
 
-describe('HttpResponseHeaders', () => {
-	describe('Rules', () => {
-		describe('SecurityHeaders', () => {
-			it('are defined', () => {
-				expect(HttpResponseHeaders.Rules.SecurityHeaders).toBeDefined();
-			});
+import { RuleSet, type SecurityHeader } from './index.js';
+import { applySecurityHeaders } from './headers.js';
 
-			it('defines headers missing from SvelteKit required to achieve securityheaders.com A grade', () => {
+describe( 'HttpResponseHeaders', () => {
+	describe( 'RuleSet', () => {
+		describe( 'SecurityHeaders', () => {
+			it( 'are defined', () => {
+				expect( RuleSet ).toHaveProperty('SecurityHeaders');
+			} );
+
+			it( 'defines headers missing from SvelteKit required to achieve securityheaders.com A grade', () => {
 				const missingHeaders: string[] = [
 					'X-Frame-Options',
 					'X-Content-Type-Options',
@@ -17,43 +18,43 @@ describe('HttpResponseHeaders', () => {
 					'Permissions-Policy'
 				];
 
-				missingHeaders.forEach((header) => {
+				missingHeaders.forEach( ( header ) => {
 					expect(
-						HttpResponseHeaders.Rules.SecurityHeaders.find((x) => x.name === header)
+						RuleSet.SecurityHeaders.find( ( x ) => x.name === header )
 					).toBeTruthy();
-				});
-			});
-		});
-	});
+				} );
+			} );
+		} );
+	} );
 
-	describe('applySecurityHeaders', () => {
-		it('removes header when value is undefined', () => {
+	describe( 'applySecurityHeaders', () => {
+		it( 'removes header when value is null', () => {
 			const headers: Headers = new Headers();
-			headers.append('X-Foo', 'value');
+			headers.append( 'X-Foo', 'value' );
 
-			const securityHeaders: SecurityHeader[] = [{ name: 'X-Foo', value: undefined }];
+			const securityHeaders: SecurityHeader[] = [ { name: 'X-Foo', value: null } ];
 
-			HttpResponseHeaders.applySecurityHeaders(headers, securityHeaders);
+			applySecurityHeaders( headers, { headers: securityHeaders, verbose: true } );
 
-			expect(headers.has('X-Foo')).toBe(false);
-		});
+			expect( headers.has( 'X-Foo' ) ).toBe( false );
+		} );
 
-		it('adds new header', () => {
+		it( 'adds new header', () => {
 			const headers = new Headers();
-			const securityHeaders: SecurityHeader[] = [{ name: 'X-New', value: 'foo' }];
+			const securityHeaders: SecurityHeader[] = [ { name: 'X-New', value: 'foo' } ];
 
-			HttpResponseHeaders.applySecurityHeaders(headers, securityHeaders);
+			applySecurityHeaders( headers, { headers: securityHeaders, verbose: true } );
 
-			expect(headers.get('X-New')).toBe('foo');
-		});
+			expect( headers.get( 'X-New' ) ).toBe( 'foo' );
+		} );
 
-		it('updates existing header value', () => {
-			const headers = new Headers([['X-Test', 'old']]);
-			const securityHeaders = [{ name: 'X-Test', value: 'new' }];
+		it( 'updates existing header value', () => {
+			const headers = new Headers( [ [ 'X-Test', 'old' ] ] );
+			const securityHeaders = [ { name: 'X-Test', value: 'new' } ];
 
-			HttpResponseHeaders.applySecurityHeaders(headers, securityHeaders);
+			applySecurityHeaders( headers, { headers: securityHeaders, verbose: true } );
 
-			expect(headers.get('X-Test')).toBe('new');
-		});
-	});
-});
+			expect( headers.get( 'X-Test' ) ).toBe( 'new' );
+		} );
+	} );
+} );

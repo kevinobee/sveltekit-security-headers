@@ -1,40 +1,33 @@
-import type { SecurityHeader } from './types.js';
+import type { SecurityHeader, SvelteKitResponseHeadersConfig } from './types.js';
 
-const Rules = {
-	SecurityHeaders: [
-		{ name: 'X-Frame-Options', value: 'DENY' },
-		{ name: 'X-Content-Type-Options', value: 'nosniff' },
-		{ name: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-		{ name: 'Permissions-Policy', value: 'geolocation=(), camera=(), microphone=()' }
-	]
-};
+const setHeaderDiag = ( header: SecurityHeader ) => `setting '${ header.name }' header to '${ header.value }'`;
 
-const applySecurityHeaders = (
+const deleteHeaderDiag = ( header: SecurityHeader, currentValue : string ) => `deleting '${ header.name }' header, removing '${ currentValue }' setting`;
+
+export const applySecurityHeaders = (
 	headers: Headers,
-	securityHeaders: SecurityHeader[] = Rules.SecurityHeaders
-) => {
-	securityHeaders.forEach((header) => {
-		if (header.value !== undefined) {
-			const currentValue = headers.get(header.name);
-			if (currentValue == null) {
-				headers.set(header.name, header.value);
+	config: SvelteKitResponseHeadersConfig
+): void => {
+
+	config.headers.forEach( ( securityHeader: SecurityHeader ) => {
+		const currentValue = headers.get( securityHeader.name );
+
+		// console.log({securityHeader, currentValue});
+		if ( securityHeader.value !== null ) {
+			if ( config.verbose ) console.log( setHeaderDiag(securityHeader) );
+
+			if ( currentValue == null ) {
+				headers.set( securityHeader.name, securityHeader.value );
 			} else {
-				if (currentValue !== header.value) {
-					console.log(
-						`WARN: setting ${header.name} HTTP response header to '${header.value}', replacing '${currentValue}' value`
-					);
-					headers.set(header.name, header.value);
+				if ( currentValue !== securityHeader.value ) {
+					headers.set( securityHeader.name, securityHeader.value );
 				}
 			}
 		} else {
-			if (headers.has(header.name)) {
-				headers.delete(header.name);
+			if ( currentValue ) {
+				if ( config.verbose ) console.log( deleteHeaderDiag( securityHeader, currentValue ) );
+				headers.delete( securityHeader.name );
 			}
 		}
-	});
-};
-
-export const HttpResponseHeaders = {
-	applySecurityHeaders,
-	Rules
+	} );
 };

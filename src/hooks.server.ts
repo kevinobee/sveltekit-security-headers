@@ -1,10 +1,12 @@
-// src/hooks.server.ts
+import { SvelteKitSecurityHeaders, RuleSet } from "$lib/index.js";
 
-// scenario - no existing Hook defined
-export { handleHttpResponseHeaders as handle } from './lib/hook.js';
-
-// scenario - existing handle Hook defined
-// import { handleHttpResponseHeaders } from "$lib/hook.js";
-// import type { Handle } from "@sveltejs/kit";
-// import { sequence } from "@sveltejs/kit/hooks";
-// export const handle: Handle = sequence( /* existing Hook code , */ handleHttpResponseHeaders );
+export const handle = SvelteKitSecurityHeaders( {
+	headers: [
+		...new Set( [ // removes duplicates
+			...RuleSet.SecurityHeaders,
+			...RuleSet.SvelteKitSpecific,
+			...RuleSet.OwaspRecommended
+		] )
+	],
+	verbose: true
+} ).handle;
