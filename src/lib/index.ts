@@ -25,7 +25,11 @@
  * 		...new Set( [ // removes duplicates
  * 			...RuleSet.SecurityHeaders,
  * 			...RuleSet.SvelteKitSpecific,
- * 			...RuleSet.OwaspRecommended
+ * 			...RuleSet.OwaspRecommended,
+ * 			[
+ * 				{ name: 'X-XYZ-HEADER', value: 'value to set' },
+ * 				{ name: 'X-XYZ-HEADER-TO-REMOVE', value: null }
+ * 			]
  * 		] )
  * 	],
  * 	verbose: true
@@ -34,47 +38,46 @@
  *
  */
 
-import type { Handle, MaybePromise, RequestEvent, ResolveOptions } from "@sveltejs/kit";
-import type { HttpResponseHeader, SecurityHeader, SvelteKitResponseHeadersConfig } from './types.js';
+import type { Handle, MaybePromise, RequestEvent, ResolveOptions } from '@sveltejs/kit';
+import type {
+	HttpResponseHeader,
+	SecurityHeader,
+	SvelteKitResponseHeadersConfig
+} from './types.js';
 import { applySecurityHeaders } from './headers.js';
-import { RuleSet } from "./config.js";
+import { RuleSet } from './config.js';
 
-async function SecurityHeaders (
+async function SecurityHeaders(
 	event: RequestEvent<Partial<Record<string, string>>, string | null>,
 	resolve: {
 		(
 			event: RequestEvent<Partial<Record<string, string>>, string | null>,
 			opts?: ResolveOptions | undefined
-		) : MaybePromise<Response>;
-		( arg0: any ) : any;
+		): MaybePromise<Response>;
+		(arg0: any): any;
 	},
-	config: SvelteKitResponseHeadersConfig ) {
-	const response = await resolve( event );
-	applySecurityHeaders( response.headers, config );
+	config: SvelteKitResponseHeadersConfig
+) {
+	const response = await resolve(event);
+	applySecurityHeaders(response.headers, config);
 	return response;
 }
 
-export function SvelteKitSecurityHeaders (
+export function SvelteKitSecurityHeaders(
 	config = {
 		headers: RuleSet.SecurityHeaders,
 		verbose: false
 	}
 ): {
-	handle: Handle
+	handle: Handle;
 } {
 	return {
-		async handle ( { event, resolve } ) {
-			return SecurityHeaders( event, resolve, config )
-		},
-	}
+		async handle({ event, resolve }) {
+			return SecurityHeaders(event, resolve, config);
+		}
+	};
 }
 
-export type {
-	SvelteKitResponseHeadersConfig,
-	SecurityHeader,
-	HttpResponseHeader
-}
+export type { SvelteKitResponseHeadersConfig, SecurityHeader, HttpResponseHeader };
 
-export {
-	RuleSet
-}
+export { RuleSet };

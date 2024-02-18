@@ -11,8 +11,6 @@
 		"strict": true,
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
-		"types": [
-			"axe-core"
-		]
+		"types": ["axe-core"]
 	}
 }
