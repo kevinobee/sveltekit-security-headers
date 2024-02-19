@@ -1,7 +1,8 @@
-import { dev } from '$app/environment';
+import { DEV } from 'esm-env';
+
 import type { SecurityHeader } from './types.js';
 
-export const url = dev ? 'http://localhost:5173/' : 'https://yoursite.com';
+export const url = DEV ? 'http://localhost:5173/' : 'https://yoursite.com';
 
 // HTTP Security Response Headers Cheat Sheet
 // https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#http-security-response-headers-cheat-sheet
