@@ -16,7 +16,7 @@ npm install @faranglao/sveltekit-security-headers
 
 To add HTTP Security Response Headers to a SvelteKit application follow these steps:
 
-1. Install the `@faranglao/sveltekit-security-headers` package using `npm install @faranglao/sveltekit-security-headers`.
+1. Install the package using `npm install @faranglao/sveltekit-security-headers`.
 
 2. Add the Hook in [src/hooks.server.ts](./src/hooks.server.ts):
 
@@ -50,18 +50,28 @@ Then run the web application using `npm run dev` or `npm run build && npm run pr
 Full customization of HTTP response headers returned from your application is shown in the following code sample:
 
 ```ts
+// src/hooks.server.ts
 import { SvelteKitSecurityHeaders } from '@faranglao/sveltekit-security-headers';
 
 export const handle = SvelteKitSecurityHeaders({
   headers: [
+    // remove any duplicates with a Set
     ...new Set([
-      // removes duplicates
       ...RuleSet.SecurityHeaders,
       ...RuleSet.SvelteKitSpecific,
-      ...RuleSet.OwaspRecommended,
+      ...RuleSet.OwaspRecommendedMinimal,
+
       [
-        { name: 'X-XYZ-HEADER', value: 'value to set' },
-        { name: 'X-XYZ-HEADER-TO-REMOVE', value: null }
+        // Access-Control-Allow-Origin header to allow requests from https://sveltekit-security-headers.vercel.app
+        // .. override value with your domain
+        {
+          name: 'Access-Control-Allow-Origin',
+          value: 'https://sveltekit-security-headers.vercel.app'
+        }
+      ][
+        //... add more headers here
+        ({ name: 'X-XYZ-HEADER', value: 'value to set' },
+        { name: 'X-XYZ-HEADER-TO-REMOVE', value: null })
       ]
     ])
   ],
