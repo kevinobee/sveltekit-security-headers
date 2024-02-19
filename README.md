@@ -16,7 +16,7 @@ npm install @faranglao/sveltekit-security-headers
 
 To add HTTP Security Response Headers to a SvelteKit application follow these steps:
 
-1. Install the `@faranglao/sveltekit-security-headers` package using `npm install @faranglao/sveltekit-security-headers`.
+1. Install the package using `npm install @faranglao/sveltekit-security-headers`.
 
 2. Add the Hook in [src/hooks.server.ts](./src/hooks.server.ts):
 
