@@ -4,7 +4,7 @@ import { mdsvex, escapeSvelte } from 'mdsvex';
 import { getHighlighter } from 'shiki';
 
 const langs = ['javascript', 'typescript', 'shell'];
-const theme = 'github-dark-dimmed';
+const theme = 'aurora-x';
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
 	extensions: ['.md'],

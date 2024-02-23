@@ -6,9 +6,11 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--line-height: 1.6;
 	--gap: 1rem;
-	--color: #333;
+	--color: black;
 	--bg: #eee;
 	--bg-code: hsla(0, 0%, 0%, 0.1);
+
+	--accent: rgb(192, 56, 6);
 }
 
 *,
@@ -47,14 +49,32 @@ p {
 	text-wrap: pretty;
 }
 
-pre code {
-	padding-block: calc(var(--gap) / 5);
-	padding-inline: calc(var(--gap) / 2);
-	background-color: var(--bg-code);
+pre {
+	overflow: clip;
+	overflow-x: auto;
+	scrollbar-color: #666 transparent;
+	padding: calc(var(--gap) / 2);
+	border-radius: 8px;
+	border: 2px solid color-mix(in lab, currentColor, white 10%);
 }
 
-code {
-	font-weight: 700;
-	padding-inline: calc(var(--gap) / 3);
-	background-color: var(--bg-code);
+code:not(pre code) {
+	background-color: #dbdada;
+	color: black;
+	font-weight: 500;
+	border-radius: 4px;
+	margin-inline: 0.1em;
+	padding-inline: 0.2em;
+}
+
+a {
+	color: var(--accent);
+	text-decoration: none;
+	text-decoration-color: var(--accent);
+	text-underline-offset: 4px;
+	transition: color 0.3s ease;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
