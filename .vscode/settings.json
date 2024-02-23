@@ -8,10 +8,12 @@
     "HPKP",
     "HSTS",
     "httponly",
+    "mdsvex",
     "nosniff",
     "publint",
     "samesite",
     "securityheaders",
+    "shiki",
     "tailwindcss",
     "vite",
     "zaproxy"
