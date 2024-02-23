@@ -8,6 +8,7 @@
     "HPKP",
     "HSTS",
     "httponly",
+    "mdsvex",
     "nosniff",
     "publint",
     "samesite",
