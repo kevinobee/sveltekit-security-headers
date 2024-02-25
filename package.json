@@ -86,5 +86,10 @@
 		"@rollup/rollup-linux-x64-gnu": "4.12.0"
 	},
 	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts"
+	"types": "./dist/index.d.ts",
+	"dependencies": {
+		"rehype-slug": "^6.0.0",
+		"remark-toc": "^9.0.0",
+		"remark-unwrap-images": "^4.0.0"
+	}
 }

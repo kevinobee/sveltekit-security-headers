@@ -2,6 +2,9 @@ import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex, escapeSvelte } from 'mdsvex';
 import { getHighlighter } from 'shiki';
+import remarkUnwrapImages from 'remark-unwrap-images';
+import remarkToc from 'remark-toc';
+import rehypeSlug from 'rehype-slug';
 
 const langs = ['http', 'typescript', 'shell'];
 const theme = 'aurora-x';
@@ -19,7 +22,9 @@ const mdsvexOptions = {
 			const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: theme }));
 			return `{@html \`${html}\` }`;
 		}
-	}
+	},
+	remarkPlugins: [remarkUnwrapImages, [remarkToc, { tight: true }]],
+	rehypePlugins: [rehypeSlug]
 };
 
 /** @type {import('@sveltejs/kit').Config} */

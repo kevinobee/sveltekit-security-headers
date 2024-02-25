@@ -13,6 +13,7 @@
     "mdsvex",
     "nosniff",
     "publint",
+    "rehype",
     "samesite",
     "securityheaders",
     "shiki",
