@@ -10,7 +10,6 @@ export const applySecurityHeaders = (
 	headers: Headers,
 	config: SvelteKitResponseHeadersConfig
 ): void => {
-
 	config.headers.forEach((securityHeader: SecurityHeader) => {
 		const currentValue = headers.get(securityHeader.name);
 
