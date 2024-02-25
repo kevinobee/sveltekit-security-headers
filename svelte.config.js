@@ -3,8 +3,9 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex, escapeSvelte } from 'mdsvex';
 import { getHighlighter } from 'shiki';
 
-const langs = ['javascript', 'typescript', 'shell'];
+const langs = ['http', 'typescript', 'shell'];
 const theme = 'aurora-x';
+
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
 	extensions: ['.md'],
@@ -14,7 +15,7 @@ const mdsvexOptions = {
 				themes: [theme],
 				langs: langs
 			});
-			await highlighter.loadLanguage('javascript', 'typescript', 'shell');
+			await highlighter.loadLanguage(...langs);
 			const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: theme }));
 			return `{@html \`${html}\` }`;
 		}

@@ -1,5 +1,6 @@
-// src/hooks.server.ts
-import { SvelteKitSecurityHeaders, RuleSet } from '$lib/index.js';
+// samples/custom/hooks.server.ts
+// copy to src/hooks.server.ts
+import { SvelteKitSecurityHeaders, RuleSet } from '@faranglao/sveltekit-security-headers';
 
 export const handle = SvelteKitSecurityHeaders({
 	headers: [
