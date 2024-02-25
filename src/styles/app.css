@@ -56,6 +56,7 @@ pre {
 	padding: calc(var(--gap) / 2);
 	border-radius: 8px;
 	border: 2px solid color-mix(in lab, currentColor, white 10%);
+	font-size: calc(var(--font-size) * 0.8);
 }
 
 code:not(pre code) {

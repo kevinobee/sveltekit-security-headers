@@ -1,6 +1,8 @@
-# sveltekit-security-headers
+# SvelteKit Security Headers
 
-Adds HTTP headers to page responses from any SvelteKit web application enhancing security for visitors browsing your site.
+Enhance visitor security in [SvelteKit](https://kit.svelte.dev) based web applications.
+
+Add those missing HTTP response headers with `sveltekit-security-headers`.
 
 [![Node.js CI](https://github.com/kevinobee/sveltekit-security-headers/actions/workflows/node.js.yml/badge.svg)](https://github.com/kevinobee/sveltekit-security-headers/actions/workflows/node.js.yml)
 [![Lint](https://github.com/kevinobee/sveltekit-security-headers/actions/workflows/lint.yml/badge.svg)](https://github.com/kevinobee/sveltekit-security-headers/actions/workflows/lint.yml)
@@ -14,46 +16,48 @@ npm install @faranglao/sveltekit-security-headers
 
 ## Getting Started
 
-To add HTTP Security Response Headers to a SvelteKit application follow these steps:
+To add HTTP response headers to your application install the package and export the `SvelteKitSecurityHeaders().handle` function.
 
-1. Install the package using `npm install @faranglao/sveltekit-security-headers`.
-
-2. Add the Hook in [src/hooks.server.ts](./src/hooks.server.ts):
-
-Scenario - no existing Hook defined:
+The `SvelteKitSecurityHeaders().handle` function is a SvelteKit [Server Hook](https://kit.svelte.dev/docs/hooks#server-hooks) that is exported in `src/hooks.server.ts`.
 
 ```ts
-// src/hooks.server.ts
+// samples/securityheaders/hooks.server.ts
+// copy to src/hooks.server.ts
 import { SvelteKitSecurityHeaders } from '@faranglao/sveltekit-security-headers';
 
 export const handle = SvelteKitSecurityHeaders().handle;
 ```
 
-Scenario - existing `handle` Hook defined:
+Then run the web application using `npm run dev`.
 
-Use [the sequence helper function](https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks) to wrap the existing hook and `SvelteKitSecurityHeaders` function as shown below.
+The `handle` function will add the following headers to your sites HTTP traffic.
 
-```ts
-// src/hooks.server.ts
-import type { Handle } from '@sveltejs/kit';
-import { sequence } from '@sveltejs/kit/hooks';
-import { SvelteKitSecurityHeaders } from '@faranglao/sveltekit-security-headers';
-
-export const handle: Handle = sequence(
-  /* existing Hook code , */
-  SvelteKitSecurityHeaders().handle
-);
+```http
+# Headers added to HTTP Response
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: geolocation=(), camera=(), microphone=()
 ```
 
-Then run the web application using `npm run dev` or `npm run build && npm run preview`.
+## Security Headers
 
-## Customize HTTP Response Headers
+Having already delivered over 250 million scans the [Security Headers](https://securityheaders.com/) site is a useful tool for analyzing HTTP headers.
 
-Full customization of HTTP response headers returned from your application is shown in the following code sample:
+The scan returns a score from an A+ grade down to an F grade. You can find more information on scoring on Scott Helme's [Security Headers](https://scotthelme.co.uk/tag/security-headers/) blog.
+
+With minimal configuration `SvelteKitSecurityHeaders().handle` will add those missing HTTP headers required to achieve an **A&nbsp;grade** score on [securityheaders.com](https://securityheaders.com/?q=https%3A%2F%2Fsveltekit-security-headers.vercel.app%2F&followRedirects=on)
+
+## Customizing Response Headers
+
+The `SvelteKitSecurityHeaders().handle` function makes it possible to fully customize the HTTP response headers returned from your application.
+
+The code below shows how to apply both pre-configured headers and add customer values to your HTTP responses.
 
 ```ts
-// src/hooks.server.ts
-import { SvelteKitSecurityHeaders } from '@faranglao/sveltekit-security-headers';
+// samples/custom/hooks.server.ts
+// copy to src/hooks.server.ts
+import { SvelteKitSecurityHeaders, RuleSet } from '@faranglao/sveltekit-security-headers';
 
 export const handle = SvelteKitSecurityHeaders({
   headers: [
@@ -63,22 +67,35 @@ export const handle = SvelteKitSecurityHeaders({
       ...RuleSet.SvelteKitSpecific,
       ...RuleSet.OwaspRecommendedMinimal,
 
-      [
-        // Access-Control-Allow-Origin header to allow requests from https://sveltekit-security-headers.vercel.app
-        // .. override value with your domain
-        {
-          name: 'Access-Control-Allow-Origin',
-          value: 'https://sveltekit-security-headers.vercel.app'
-        }
-      ][
-        //... add more headers here
-        ({ name: 'X-XYZ-HEADER', value: 'value to set' },
-        { name: 'X-XYZ-HEADER-TO-REMOVE', value: null })
-      ]
+      // Access-Control-Allow-Origin header to allow requests
+      // from your domain .. override value
+      {
+        name: 'Access-Control-Allow-Origin',
+        value: 'https://sveltekit-security-headers.vercel.app'
+      }
+
+      // .. add custom headers
     ])
   ],
   verbose: true
 }).handle;
+```
+
+## Multiple Server Hooks
+
+The following code sample shows how to use [the sequence helper function](https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks) to wrap existing server hook code and invoke the `SvelteKitSecurityHeaders().handle` function.
+
+```ts
+// samples/sequence/hooks.server.ts
+// copy to src/hooks.server.ts
+import type { Handle } from '@sveltejs/kit';
+import { sequence } from '@sveltejs/kit/hooks';
+import { SvelteKitSecurityHeaders } from '@faranglao/sveltekit-security-headers';
+
+export const handle: Handle = sequence(
+  /* existing Hook code , */
+  SvelteKitSecurityHeaders().handle
+);
 ```
 
 ## Source Code

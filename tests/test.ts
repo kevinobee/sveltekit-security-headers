@@ -20,7 +20,7 @@ test.describe('Home page', () => {
 
 	test('has h1 containing NPM package name', async () => {
 		await page.goto(homepage);
-		await expect(page.getByRole('heading', { name: expectedName })).toBeVisible();
+		await expect(page.getByRole('heading', { name: 'SvelteKit Security Headers' })).toBeVisible();
 	});
 
 	test('body contains NPM package installation instructions', async ({ page }) => {

@@ -1,6 +1,6 @@
 {
 	"name": "@faranglao/sveltekit-security-headers",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "A security library for SvelteKit, improving safety using HTTP Response Headers",
 	"private": false,
 	"type": "module",
@@ -9,6 +9,7 @@
 		"type": "git",
 		"url": "git+https://github.com/kevinobee/sveltekit-security-headers.git"
 	},
+	"homepage": "https://sveltekit-security-headers.vercel.app/",
 	"author": "Kevin Obee",
 	"keywords": [
 		"svelte",
@@ -85,5 +86,10 @@
 		"@rollup/rollup-linux-x64-gnu": "4.12.0"
 	},
 	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts"
+	"types": "./dist/index.d.ts",
+	"dependencies": {
+		"rehype-slug": "^6.0.0",
+		"remark-toc": "^9.0.0",
+		"remark-unwrap-images": "^4.0.0"
+	}
 }

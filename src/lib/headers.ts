@@ -13,7 +13,6 @@ export const applySecurityHeaders = (
 	config.headers.forEach((securityHeader: SecurityHeader) => {
 		const currentValue = headers.get(securityHeader.name);
 
-		// console.log({securityHeader, currentValue});
 		if (securityHeader.value !== null) {
 			if (config.verbose) console.log(setHeaderDiag(securityHeader));
 
