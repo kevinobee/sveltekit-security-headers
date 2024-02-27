@@ -12,6 +12,7 @@
     "httponly",
     "mdsvex",
     "nosniff",
+    "Owasp",
     "publint",
     "rehype",
     "samesite",
