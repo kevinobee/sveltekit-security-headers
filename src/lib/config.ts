@@ -105,26 +105,9 @@ const OwaspRecommended: SecurityHeader[] = [
 	])
 ];
 
-// Not required in SvelteKit, included here for completeness
-const NonSvelteKit: SecurityHeader[] = [
-	// X-Powered-By
-	// https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-powered-by
-	{ name: 'X-Powered-By', value: null }, // removes response header
-
-	// X-AspNet-Version
-	// https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-aspnet-version
-	{ name: 'X-AspNet-Version', value: null }, // removes response header
-
-	// X-AspNetMvc-Version
-	// https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-aspnetmvc-version
-	// Not required in SvelteKit, included here for completeness
-	{ name: 'X-AspNetMvc-Version', value: null } // removes response header
-];
-
 export const RuleSet = {
 	SecurityHeaders,
 	SvelteKitSpecific,
-	NonSvelteKit,
 	OwaspRecommendedMinimal,
 	OwaspRecommended
 };
