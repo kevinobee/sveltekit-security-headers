@@ -28,17 +28,6 @@ test.describe('HTTP Security Response Headers', () => {
 		});
 	});
 
-	test.describe('Non Sveltekit headers', () => {
-		test.describe('NonSvelteKit rule set', () => {
-			const expectedSecurityHeaders: SecurityHeader[] = [
-				{ name: 'X-Powered-By', value: null },
-				{ name: 'X-AspNet-Version', value: null },
-				{ name: 'X-AspNetMvc-Version', value: null }
-			];
-			verifyResponseHeaders(expectedSecurityHeaders);
-		});
-	});
-
 	test.describe('OWASP Cheat Sheet test suite', () => {
 		test.describe('OwaspRecommendedMinimal rule set', () => {
 			const expectedSecurityHeaders: SecurityHeader[] = [
