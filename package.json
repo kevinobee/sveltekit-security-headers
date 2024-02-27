@@ -1,6 +1,6 @@
 {
 	"name": "@faranglao/sveltekit-security-headers",
-	"version": "0.2.2",
+	"version": "0.3.0",
 	"description": "A security library for SvelteKit, improving safety using HTTP Response Headers",
 	"private": false,
 	"type": "module",
