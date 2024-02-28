@@ -90,5 +90,19 @@ describe('Pre-configured rule sets are available', () => {
 			expect(mockResponse.headers.set).toHaveBeenCalledWith('X-Frame-Options', 'DENY');
 			expect(mockResponse.headers.set).not.toHaveBeenCalledWith('X-Frame-Options', 'ALLOW');
 		});
+
+		it('should trim whitespace in Header name and value properties', async () => {
+			const event = mockEvent;
+			const resolve = () => mockResponse;
+
+			const config: SvelteKitResponseHeadersConfig = {
+				headers: [{ name: ' X-New ', value: ' a-value ' }],
+				verbose: true
+			};
+
+			await SvelteKitSecurityHeaders(config).handle({ event, resolve });
+
+			expect(mockResponse.headers.set).toHaveBeenCalledWith('X-New', 'a-value');
+		});
 	});
 });

@@ -2,11 +2,10 @@ import type { Handle } from '@sveltejs/kit';
 import type { SecurityHeader, SvelteKitResponseHeadersConfig } from './types.js';
 import { RuleSet } from './config.js';
 
-const setHeaderDiag = (header: SecurityHeader) =>
-	`setting '${header.name}' header to '${header.value}'`;
+const setHeaderDiag = (name: string, value: string) => `setting '${name}' header to '${value}'`;
 
-const deleteHeaderDiag = (header: SecurityHeader, currentValue: string) =>
-	`deleting '${header.name}' header, removing '${currentValue}' setting`;
+const deleteHeaderDiag = (name: string, currentValue: string) =>
+	`deleting '${name}' header, removing '${currentValue}' setting`;
 
 const uniqueHeaders = (headers: SecurityHeader[]) => {
 	const unique: SecurityHeader[] = [];
@@ -24,22 +23,26 @@ const uniqueHeaders = (headers: SecurityHeader[]) => {
 
 const applySecurityHeaders = (headers: Headers, config: SvelteKitResponseHeadersConfig): void => {
 	uniqueHeaders(config.headers).forEach((securityHeader: SecurityHeader) => {
-		const currentValue = headers.get(securityHeader.name);
+		const name = securityHeader.name.trim();
+		const value =
+			typeof securityHeader.value === 'string' ? securityHeader.value.trim() : securityHeader.value;
 
-		if (securityHeader.value !== null) {
-			if (config.verbose) console.log(setHeaderDiag(securityHeader));
+		const currentValue = headers.get(name);
+
+		if (value !== null) {
+			if (config.verbose) console.log(setHeaderDiag(name, value!));
 
 			if (currentValue == null) {
-				headers.set(securityHeader.name, securityHeader.value);
+				headers.set(name, value!);
 			} else {
-				if (currentValue !== securityHeader.value) {
-					headers.set(securityHeader.name, securityHeader.value);
+				if (currentValue !== value) {
+					headers.set(name, value!);
 				}
 			}
 		} else {
 			if (currentValue) {
-				if (config.verbose) console.log(deleteHeaderDiag(securityHeader, currentValue));
-				headers.delete(securityHeader.name);
+				if (config.verbose) console.log(deleteHeaderDiag(name, currentValue));
+				headers.delete(name);
 			}
 		}
 	});
