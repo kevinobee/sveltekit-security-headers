@@ -61,21 +61,18 @@ import { SvelteKitSecurityHeaders, RuleSet } from '@faranglao/sveltekit-security
 
 export const handle = SvelteKitSecurityHeaders({
   headers: [
-    // remove any duplicates with a Set
-    ...new Set([
-      ...RuleSet.SecurityHeaders,
-      ...RuleSet.SvelteKitSpecific,
-      ...RuleSet.OwaspRecommendedMinimal,
+    ...RuleSet.SecurityHeaders,
+    ...RuleSet.SvelteKitSpecific,
+    ...RuleSet.OwaspRecommendedMinimal,
 
-      // Access-Control-Allow-Origin header to allow requests
-      // from your domain .. override value
-      {
-        name: 'Access-Control-Allow-Origin',
-        value: 'https://sveltekit-security-headers.vercel.app'
-      }
+    // Access-Control-Allow-Origin header to allow requests
+    // from your domain .. override value
+    {
+      name: 'Access-Control-Allow-Origin',
+      value: 'https://sveltekit-security-headers.vercel.app'
+    }
 
-      // .. add custom headers
-    ])
+    // .. add custom headers
   ],
   verbose: true
 }).handle;

@@ -38,47 +38,14 @@
  *
  */
 
-import type { Handle, MaybePromise, RequestEvent, ResolveOptions } from '@sveltejs/kit';
 import type {
 	HttpResponseHeader,
 	SecurityHeader,
 	SvelteKitResponseHeadersConfig
 } from './types.js';
-import { applySecurityHeaders } from './headers.js';
 import { RuleSet } from './config.js';
-
-async function SecurityHeaders(
-	event: RequestEvent<Partial<Record<string, string>>, string | null>,
-	resolve: {
-		(
-			event: RequestEvent<Partial<Record<string, string>>, string | null>,
-			opts?: ResolveOptions | undefined
-		): MaybePromise<Response>;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		(arg0: any): any;
-	},
-	config: SvelteKitResponseHeadersConfig
-) {
-	const response = await resolve(event);
-	applySecurityHeaders(response.headers, config);
-	return response;
-}
-
-export function SvelteKitSecurityHeaders(
-	config = {
-		headers: RuleSet.SecurityHeaders,
-		verbose: false
-	}
-): {
-	handle: Handle;
-} {
-	return {
-		async handle({ event, resolve }) {
-			return SecurityHeaders(event, resolve, config);
-		}
-	};
-}
+import { SvelteKitSecurityHeaders } from './hook.js';
 
 export type { SvelteKitResponseHeadersConfig, SecurityHeader, HttpResponseHeader };
 
-export { RuleSet };
+export { SvelteKitSecurityHeaders, RuleSet };
