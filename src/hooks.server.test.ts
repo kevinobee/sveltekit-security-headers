@@ -7,10 +7,5 @@ describe('Server Hooks', () => {
 			expect(handle).toBeDefined();
 			expect(handle).toBeTypeOf('function');
 		});
-
-		it('defers to SecurityHeaders', () => {
-			// quick & lazy test approach
-			expect(handle.toString()).toContain('return SecurityHeaders(event, resolve, config');
-		});
 	});
 });

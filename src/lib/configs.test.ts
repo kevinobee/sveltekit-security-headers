@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { RuleSet } from './index.js';
+import { RuleSet } from './config.js';
 
 describe('RuleSet configuration', () => {
 	describe('includes preset rule sets', () => {
@@ -10,12 +10,23 @@ describe('RuleSet configuration', () => {
 				});
 			}
 		);
+	});
 
-		it('rule sets contain at least one header', () => {
-			expect(RuleSet.SecurityHeaders).not.toBe([]);
-			expect(RuleSet.SvelteKitSpecific).not.toBe([]);
-			expect(RuleSet.OwaspRecommendedMinimal).not.toBe([]);
-			expect(RuleSet.OwaspRecommended).not.toBe([]);
+	describe('rule sets contain HTTP response headers to apply', () => {
+		it('SecurityHeaders', () => {
+			expect(RuleSet.SecurityHeaders).not.toHaveLength(0);
+		});
+
+		it('SvelteKitSpecific', () => {
+			expect(RuleSet.SvelteKitSpecific).not.toHaveLength(0);
+		});
+
+		it('OwaspRecommended', () => {
+			expect(RuleSet.OwaspRecommendedMinimal).not.toHaveLength(0);
+		});
+
+		it('OwaspRecommended', () => {
+			expect(RuleSet.OwaspRecommended).not.toHaveLength(0);
 		});
 	});
 });
