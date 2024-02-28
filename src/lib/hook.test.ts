@@ -10,12 +10,6 @@ describe('SvelteKitSecurityHeaders server hook', () => {
 	it('is defined', () => {
 		expect(SvelteKitSecurityHeaders).toBeDefined();
 	});
-});
-
-describe('Pre-configured rule sets are available', () => {
-	it('RuleSet is exported', () => {
-		expect(RuleSet).toBeDefined();
-	});
 
 	describe('handle', () => {
 		let mockEvent: DeepMockProxy<RequestEvent>;
@@ -32,7 +26,7 @@ describe('Pre-configured rule sets are available', () => {
 
 			const config: SvelteKitResponseHeadersConfig = {
 				headers: [{ name: 'X-New', value: 'foo' }],
-				verbose: true
+				verbose: false
 			};
 			await SvelteKitSecurityHeaders(config).handle({ event, resolve });
 
@@ -45,7 +39,7 @@ describe('Pre-configured rule sets are available', () => {
 
 			const config: SvelteKitResponseHeadersConfig = {
 				headers: [{ name: 'X-New', value: null }],
-				verbose: true
+				verbose: false
 			};
 
 			mockResponse.headers.get.calledWith('X-New').mockReturnValue('a-value');
@@ -83,7 +77,7 @@ describe('Pre-configured rule sets are available', () => {
 					{ name: 'X-Frame-Options', value: 'ALLOW' },
 					{ name: 'X-Frame-Options', value: 'DENY' }
 				],
-				verbose: true
+				verbose: false
 			};
 			await SvelteKitSecurityHeaders(config).handle({ event, resolve });
 
@@ -97,12 +91,18 @@ describe('Pre-configured rule sets are available', () => {
 
 			const config: SvelteKitResponseHeadersConfig = {
 				headers: [{ name: ' X-New ', value: ' a-value ' }],
-				verbose: true
+				verbose: false
 			};
 
 			await SvelteKitSecurityHeaders(config).handle({ event, resolve });
 
 			expect(mockResponse.headers.set).toHaveBeenCalledWith('X-New', 'a-value');
 		});
+	});
+});
+
+describe('Pre-configured rule sets are available', () => {
+	it('RuleSet is exported', () => {
+		expect(RuleSet).toBeDefined();
 	});
 });
