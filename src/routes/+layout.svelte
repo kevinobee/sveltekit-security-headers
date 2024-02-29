@@ -8,6 +8,7 @@
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
+ <meta name="google-site-verification" content="8k3oeXaNn3LevaZpA9VGwV1dE1MvqW-8l1VqVX_MOHc" />
 </svelte:head>
 
 <main>
