@@ -1,52 +1,36 @@
 # SvelteKit Security Headers
 
-Enhance visitor security in [SvelteKit](https://kit.svelte.dev) based web applications.
+Enhance visitor security in [SvelteKit](https://kit.svelte.dev) apps. Add those [missing HTTP response headers](https://securityheaders.com/?q=https%3A%2F%2Fkit.svelte.dev%2F&hide=on&followRedirects=on).
 
-Add those missing HTTP response headers with `sveltekit-security-headers`.
-
-## Installation
+## Install
 
 ```shell
 npm install @faranglao/sveltekit-security-headers
 ```
 
-## Getting Started
-
-To add HTTP response headers to your application install the package and export the `SvelteKitSecurityHeaders().handle` function.
-
-The `SvelteKitSecurityHeaders().handle` function is a SvelteKit [Server Hook](https://kit.svelte.dev/docs/hooks#server-hooks) that is exported in `src/hooks.server.ts`.
+## Usage
 
 ```ts
-// samples/securityheaders/hooks.server.ts
-// copy to src/hooks.server.ts
+// src/hooks.server.ts
 import { SvelteKitSecurityHeaders } from '@faranglao/sveltekit-security-headers';
 
 export const handle = SvelteKitSecurityHeaders().handle;
 ```
 
-Then run the web application using `npm run dev`.
+To add HTTP response headers to your application install the package and export the `handle` function from `SvelteKitSecurityHeaders`. The `handle` function is a SvelteKit [Server Hook](https://kit.svelte.dev/docs/hooks#server-hooks) exported in `src/hooks.server.ts`.
 
-The `handle` function will add the following headers to your sites HTTP traffic.
+## Default Response Headers
+
+The `SvelteKitSecurityHeaders` server hook adds the following response headers to routed HTTP requests:
 
 ```http
-# Headers added to HTTP Response
 X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
 Referrer-Policy: strict-origin-when-cross-origin
 Permissions-Policy: geolocation=(), camera=(), microphone=()
 ```
 
-## Security Headers
-
-Having already delivered over 250 million scans the [Security Headers](https://securityheaders.com/) site is a useful tool for analyzing HTTP headers.
-
-The scan returns a score from an A+ grade down to an F grade. You can find more information on scoring on Scott Helme's [Security Headers](https://scotthelme.co.uk/tag/security-headers/) blog.
-
-With minimal configuration `SvelteKitSecurityHeaders().handle` will add those missing HTTP headers required to achieve an **A&nbsp;grade** score on [securityheaders.com](https://securityheaders.com/?q=https%3A%2F%2Fsveltekit-security-headers.vercel.app%2F&followRedirects=on)
-
 ## Customizing Response Headers
-
-The `SvelteKitSecurityHeaders().handle` function makes it possible to fully customize the HTTP response headers returned from your application.
 
 The code below shows how to apply both pre-configured headers and add customer values to your HTTP responses.
 
@@ -57,7 +41,6 @@ import { SvelteKitSecurityHeaders, RuleSet } from '@faranglao/sveltekit-security
 
 export const handle = SvelteKitSecurityHeaders({
   headers: [
-    ...RuleSet.SecurityHeaders,
     ...RuleSet.SvelteKitSpecific,
     ...RuleSet.OwaspRecommendedMinimal,
 
@@ -76,7 +59,7 @@ export const handle = SvelteKitSecurityHeaders({
 
 ## Multiple Server Hooks
 
-The following code sample shows how to use [the sequence helper function](https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks) to wrap existing server hook code and invoke the `SvelteKitSecurityHeaders().handle` function.
+The [sequence helper function](https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks) is used to call multiple server hook functions as shown below.
 
 ```ts
 // samples/sequence/hooks.server.ts
@@ -91,6 +74,16 @@ export const handle: Handle = sequence(
 );
 ```
 
+## Test Security Headers
+
+Having already delivered over 250 million scans the [Security Headers](https://securityheaders.com/) site is a useful tool for analyzing HTTP headers.
+
+The scan returns a score from an A+ grade down to an F grade. You can find more information on scoring on Scott Helme's [Security Headers](https://scotthelme.co.uk/tag/security-headers/) blog.
+
+The `SvelteKitSecurityHeaders` server hook adds the HTTP response headers required to achieve an **A&nbsp;grade** score on [securityheaders.com](https://securityheaders.com/?q=https%3A%2F%2Fsveltekit-security-headers.vercel.app%2F&followRedirects=on)
+
 ## Source Code
 
-Source code for the <code>sveltekit-security-headers</code> package is maintained on [GitHub](https://github.com/kevinobee/sveltekit-security-headers).
+Source code for the package is maintained on [GitHub](https://github.com/kevinobee/sveltekit-security-headers).
+
+The package is published on [NPM](https://www.npmjs.com/package/@faranglao/sveltekit-security-headers).

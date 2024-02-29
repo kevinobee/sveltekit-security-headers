@@ -7,7 +7,7 @@ test.describe('homepage', () => {
 
 		const accessibilityScanResults = await new AxeBuilder({ page })
 			.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-			.disableRules(['color-contrast']) // because of comments in code blocks within rendered  Markdown
+			// .disableRules(['color-contrast']) // because of comments in code blocks within rendered  Markdown
 			.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);

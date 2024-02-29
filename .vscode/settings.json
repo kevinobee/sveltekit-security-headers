@@ -5,6 +5,7 @@
     "dhoeric",
     "esbuild",
     "faranglao",
+    "flowbite",
     "geolocation",
     "Helme's",
     "HPKP",
@@ -18,8 +19,10 @@
     "samesite",
     "securityheaders",
     "shiki",
+    "skeletonlabs",
     "tailwindcss",
     "vite",
+    "wcag",
     "zaproxy"
   ]
 }

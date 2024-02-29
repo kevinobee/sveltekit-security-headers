@@ -97,4 +97,4 @@ export const handle: Handle = sequence(
 
 ## Source Code
 
-Source code for the <code>sveltekit-security-headers</code> package is maintained on [GitHub](https://github.com/kevinobee/sveltekit-security-headers).
+Source code for the `sveltekit-security-headers` package is maintained on [GitHub](https://github.com/kevinobee/sveltekit-security-headers).
