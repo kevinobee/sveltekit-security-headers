@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { RuleSet } from './config.js';
+import { RuleSet } from './ruleset.js';
 
 describe('RuleSet configuration', () => {
 	describe('includes preset rule sets', () => {

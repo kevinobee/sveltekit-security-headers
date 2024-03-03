@@ -1,6 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
 import type { SecurityHeader, SvelteKitResponseHeadersConfig } from './types.js';
-import { RuleSet } from './config.js';
+import { RuleSet } from './headers/ruleset.js';
 
 const setHeaderDiag = (name: string, value: string) => `setting '${name}' header to '${value}'`;
 

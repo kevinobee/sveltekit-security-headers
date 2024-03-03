@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { SvelteKitSecurityHeaders } from './hook.js';
-import { RuleSet } from './config.js';
+import { RuleSet } from './headers/ruleset.js';
 
 import type { RequestEvent } from '@sveltejs/kit';
 import { mockDeep, type DeepMockProxy } from 'vitest-mock-extended';

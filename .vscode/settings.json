@@ -18,6 +18,7 @@
     "Owasp",
     "publint",
     "rehype",
+    "ruleset",
     "samesite",
     "securityheaders",
     "shiki",

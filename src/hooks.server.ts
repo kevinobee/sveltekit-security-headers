@@ -4,7 +4,6 @@ import { SvelteKitSecurityHeaders } from '$lib/hook.js';
 
 export const handle = SvelteKitSecurityHeaders({
 	headers: [
-		...RuleSet.SecurityHeaders,
 		...RuleSet.SvelteKitSpecific,
 		...RuleSet.OwaspRecommendedMinimal,
 

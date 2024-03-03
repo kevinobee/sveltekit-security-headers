@@ -1,4 +1,4 @@
-import type { SecurityHeader } from './types.js';
+import type { SecurityHeader } from '../types.js';
 import { env } from '$env/dynamic/private';
 
 export const VercelSpecific: SecurityHeader[] = [
