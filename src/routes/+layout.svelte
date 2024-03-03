@@ -1,5 +1,8 @@
 <script>
 	import '../styles/app.css';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+
+	injectSpeedInsights();
 
 	const title = 'sveltekit-security-headers';
 	const description = 'Add HTTP Security Response Headers to any SvelteKit application';
