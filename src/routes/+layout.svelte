@@ -1,8 +1,12 @@
 <script>
 	import { AppBar, AppShell, LightSwitch } from '@skeletonlabs/skeleton';
+	import { dev } from '$app/environment';
+	import { inject } from '@vercel/analytics';
 	import { GithubSolid, NpmSolid } from 'flowbite-svelte-icons';
 	import { site } from './data.js';
 	import '../app.postcss';
+
+	inject({ mode: dev ? 'development' : 'production' });
 </script>
 
 <svelte:head>
