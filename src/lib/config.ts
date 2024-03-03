@@ -1,6 +1,7 @@
 import { DEV } from 'esm-env';
 
 import type { SecurityHeader } from './types.js';
+import { VercelSpecific } from './vercel.js';
 
 export const url = DEV ? 'http://localhost:5173/' : 'https://yoursite.com';
 
@@ -109,5 +110,6 @@ export const RuleSet = {
 	SecurityHeaders,
 	SvelteKitSpecific,
 	OwaspRecommendedMinimal,
-	OwaspRecommended
+	OwaspRecommended,
+	VercelSpecific
 };

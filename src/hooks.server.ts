@@ -13,7 +13,9 @@ export const handle = SvelteKitSecurityHeaders({
 		{
 			name: 'Access-Control-Allow-Origin',
 			value: 'https://sveltekit-security-headers.vercel.app'
-		}
+		},
+
+		...RuleSet.VercelSpecific
 
 		// .. add custom headers
 	],
