@@ -1,5 +1,9 @@
 <script>
 	import '../styles/app.css';
+	import { dev } from '$app/environment';
+	import { inject } from '@vercel/analytics';
+
+	inject({ mode: dev ? 'development' : 'production' });
 
 	const title = 'sveltekit-security-headers';
 	const description = 'Add HTTP Security Response Headers to any SvelteKit application';
