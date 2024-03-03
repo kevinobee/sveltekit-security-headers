@@ -18,13 +18,13 @@
 <AppShell>
 	<svelte:fragment slot="header">
 		<AppBar slotTrail="place-content-end">
-			<div class="bold text-2xl">
+			<div class="bold hidden text-2xl lg:block">
 				{site.repo.split('/').at(-1)}
 			</div>
-			<div class="my-1 text-sm text-primary-500/95">{site.description}</div>
+			<div class="my-1 w-1/2 text-sm text-primary-500/95">{site.description}</div>
 			<svelte:fragment slot="trail">
-				<div class="flex items-center gap-x-4">
-					<nav class="flex items-center gap-x-2" aria-label="External links">
+				<div class="flex gap-x-4">
+					<nav class="flex gap-x-2" aria-label="External links">
 						<a href={site.repo}>
 							<GithubSolid class="opacity-85" ariaLabel="GitHib code repository" size="lg" />
 						</a>
