@@ -4,7 +4,6 @@ import { SvelteKitSecurityHeaders, RuleSet } from '@faranglao/sveltekit-security
 
 export const handle = SvelteKitSecurityHeaders({
 	headers: [
-		...RuleSet.SecurityHeaders,
 		...RuleSet.SvelteKitSpecific,
 		...RuleSet.OwaspRecommendedMinimal,
 
