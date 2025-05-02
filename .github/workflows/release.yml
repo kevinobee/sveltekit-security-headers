@@ -9,7 +9,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.41.1-jammy
+      image: mcr.microsoft.com/playwright:v1.46.1-jammy
     steps:
       - uses: actions/checkout@v4
         with:
