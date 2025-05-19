@@ -72,7 +72,7 @@
 		"autoprefixer": "^10.4.21",
 		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^10.1.2",
-		"eslint-plugin-svelte": "^2.46.1",
+		"eslint-plugin-svelte": "^3.8.1",
 		"esm-env": "^1.2.2",
 		"flowbite-svelte-icons": "^1.6.2",
 		"mdsvex": "^0.12.5",
