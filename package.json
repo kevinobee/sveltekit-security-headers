@@ -74,7 +74,7 @@
 		"eslint-config-prettier": "^10.1.2",
 		"eslint-plugin-svelte": "^2.46.1",
 		"esm-env": "^1.2.2",
-		"flowbite-svelte-icons": "^1.6.2",
+		"flowbite-svelte-icons": "^3.0.0",
 		"mdsvex": "^0.12.5",
 		"postcss": "^8.5.3",
 		"postcss-load-config": "^6.0.1",
